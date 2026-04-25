@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Aura</h1>
+      <p class="subtitle">your AI has opinions about you.</p>
+    </header>
+
+    <div id="loading" class="state">
+      <div class="spinner"></div>
+      <p>reading your aura...</p>
+    </div>
+
+    <div id="no-data" class="state hidden">
+      <div class="empty-icon">✦</div>
+      <h2>waiting for your first spark</h2>
+      <p>go chat with an AI — your aura builds itself.</p>
+    </div>
+
+    <div id="waiting" class="state hidden">
+      <div class="empty-icon">✦</div>
+      <h2>aura forming...</h2>
+      <p>one more conversation and we'll have your read.</p>
+    </div>
+
+    <div id="results" class="state hidden">
+      <div id="archetype-card">
+        <div id="archetype-emoji"></div>
+        <h2 id="archetype-name"></h2>
+        <p id="archetype-tagline"></p>
+        <p id="archetype-description"></p>
+      </div>
+
+      <div id="traits-section">
+        <h3>your signals</h3>
+        <div id="traits-list"></div>
+      </div>
+
+      <div id="insights-section">
+        <h3>readings</h3>
+        <ul id="insights-list"></ul>
+      </div>
+
+      <div class="actions">
+        <button id="share-btn" class="btn primary">share aura</button>
+        <button id="reset-btn" class="btn secondary">reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="analyzer.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura — your AI aura, read</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <span class="nav-brand">✦</span>
+    <button class="nav-link" id="howto-toggle">how to install</button>
+  </nav>
+
+  <main>
+    <div class="orb-wrapper">
+      <div class="orb">
+        <div class="orb-core"></div>
+        <div class="orb-ring ring-1"></div>
+        <div class="orb-ring ring-2"></div>
+        <div class="orb-ring ring-3"></div>
+        <div class="orb-pulse"></div>
+      </div>
+      <div class="orb-glow"></div>
+    </div>
+
+    <h1>Aura</h1>
+    <p class="tagline">your AI has opinions about you.</p>
+
+    <a href="aura.zip" class="download-btn" download>
+      add to chrome
+    </a>
+    <p class="fine-print">nothing leaves your browser</p>
+  </main>
+
+  <div class="howto-panel" id="howto-panel">
+    <button class="howto-close" id="howto-close">&times;</button>
+    <h2>install in 30 seconds</h2>
+    <ol>
+      <li>download the .zip</li>
+      <li>unzip it</li>
+      <li>open <code>chrome://extensions</code></li>
+      <li>turn on <strong>Developer mode</strong> (top right)</li>
+      <li>click <strong>Load unpacked</strong> → pick the folder</li>
+      <li>go talk to an AI. that's it.</li>
+    </ol>
+    <div class="howto-supported">
+      works on <span>ChatGPT</span> <span>Claude</span> <span>Gemini</span> <span>Copilot</span>
+    </div>
+  </div>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <script src="blob.js"></script>
+</body>
+</html>

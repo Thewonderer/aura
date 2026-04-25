@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #06060a;
+  color: #e8e8ed;
+}
+
+/* ── Background canvas for subtle particles ── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+}
+
+.nav-brand {
+  font-size: 20px;
+}
+
+.nav-link {
+  background: none;
+  border: 1px solid #222;
+  color: #666;
+  font-size: 12px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  color: #aaa;
+  border-color: #444;
+}
+
+/* ── Main centered content ── */
+main {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+/* ── The Orb ── */
+.orb-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 40px;
+}
+
+.orb {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb-core {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+    #fbbf24,
+    #f59e0b,
+    #ef4444,
+    #a855f7
+  );
+  box-shadow:
+    0 0 40px rgba(245, 158, 11, 0.6),
+    0 0 80px rgba(239, 68, 68, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.15);
+  animation: coreBreath 4s ease-in-out infinite;
+}
+
+@keyframes coreBreath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Orbiting rings */
+.orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+}
+
+.ring-1 {
+  width: 130px;
+  height: 130px;
+  top: calc(50% - 65px);
+  left: calc(50% - 65px);
+  border-color: rgba(245, 158, 11, 0.2);
+  animation: orbit1 12s linear infinite;
+}
+
+.ring-2 {
+  width: 170px;
+  height: 170px;
+  top: calc(50% - 85px);
+  left: calc(50% - 85px);
+  border-color: rgba(239, 68, 68, 0.12);
+  animation: orbit2 18s linear infinite reverse;
+}
+
+.ring-3 {
+  width: 210px;
+  height: 210px;
+  top: calc(50% - 105px);
+  left: calc(50% - 105px);
+  border-color: rgba(168, 85, 247, 0.08);
+  animation: orbit3 25s linear infinite;
+}
+
+/* Small dots on rings */
+.ring-1::after,
+.ring-2::after,
+.ring-3::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ring-1::after {
+  width: 6px;
+  height: 6px;
+  background: #f59e0b;
+  box-shadow: 0 0 12px #f59e0b;
+  top: -3px;
+  left: calc(50% - 3px);
+}
+
+.ring-2::after {
+  width: 4px;
+  height: 4px;
+  background: #ef4444;
+  box-shadow: 0 0 10px #ef4444;
+  top: -2px;
+  left: calc(50% - 2px);
+}
+
+.ring-3::after {
+  width: 3px;
+  height: 3px;
+  background: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+  top: -1.5px;
+  left: calc(50% - 1.5px);
+}
+
+@keyframes orbit1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit2 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit3 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orb-pulse {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: calc(50% - 45px);
+  left: calc(50% - 45px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.3), transparent 70%);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(2.2); opacity: 0; }
+}
+
+.orb-glow {
+  position: absolute;
+  inset: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(245, 158, 11, 0.08) 0%,
+    rgba(239, 68, 68, 0.04) 40%,
+    transparent 70%
+  );
+  animation: glowShift 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowShift {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ── Typography ── */
+h1 {
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #fbbf24, #ef4444, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: textGlow 6s ease infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes textGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.tagline {
+  font-size: 15px;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 36px;
+}
+
+/* ── Download Button ── */
+.download-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.download-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.25);
+}
+
+.fine-print {
+  font-size: 11px;
+  color: #333;
+  margin-top: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* ── How-to Panel ── */
+.howto-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 360px;
+  height: 100%;
+  background: #0d0d14;
+  border-left: 1px solid #1a1a28;
+  z-index: 100;
+  padding: 40px 32px;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.howto-panel.open {
+  right: 0;
+}
+
+.howto-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.howto-close:hover {
+  color: #aaa;
+}
+
+.howto-panel h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: #ccc;
+}
+
+.howto-panel ol {
+  list-style: none;
+  counter-reset: steps;
+  padding: 0;
+}
+
+.howto-panel li {
+  counter-increment: steps;
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+  padding: 10px 0 10px 36px;
+  position: relative;
+  border-bottom: 1px solid #111;
+}
+
+.howto-panel li::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.howto-panel code {
+  background: #1a1a28;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #f59e0b;
+}
+
+.howto-supported {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #555;
+}
+
+.howto-supported span {
+  display: inline-block;
+  background: #111;
+  border: 1px solid #1a1a28;
+  border-radius: 12px;
+  padding: 3px 12px;
+  margin: 4px 4px 4px 0;
+  color: #f59e0b;
+  font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .orb-wrapper {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 32px;
+  }
+
+  .orb-core { width: 65px; height: 65px; }
+
+  .ring-1 { width: 95px; height: 95px; top: calc(50% - 47.5px); left: calc(50% - 47.5px); }
+  .ring-2 { width: 125px; height: 125px; top: calc(50% - 62.5px); left: calc(50% - 62.5px); }
+  .ring-3 { width: 155px; height: 155px; top: calc(50% - 77.5px); left: calc(50% - 77.5px); }
+
+  .orb-pulse { width: 65px; height: 65px; top: calc(50% - 32.5px); left: calc(50% - 32.5px); }
+
+  .howto-panel { width: 100%; right: -100%; }
+
+  nav { padding: 16px 20px; }
+}
