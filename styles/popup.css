@@ -93,6 +93,12 @@ header h1 {
   line-height: 1.6;
 }
 
+.hint {
+  margin-top: 12px;
+  font-size: 10px;
+  color: #444;
+}
+
 /* Archetype Card */
 #archetype-card {
   text-align: center;
